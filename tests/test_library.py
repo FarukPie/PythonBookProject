@@ -17,4 +17,15 @@ def test_add_list_remove(tmp_path):
     lib.remove_book("123")
     assert lib.find_book("123") is None
 
+def test_add_book_via_api_monkeypatched(tmp_path, monkeypatch):
+    data_file = tmp_path / "lib.json"
+    lib = Library(data_file=str(data_file))
+
+    def fake_fetch(isbn):
+        return Book(title="A", author="B", isbn=isbn)
+
+    monkeypatch.setattr(lib, "_fetch_book_from_openlibrary", fake_fetch)
+    book = lib.add_book("999")
+    assert book is not None
+    assert lib.find_book("999") is not None
 
