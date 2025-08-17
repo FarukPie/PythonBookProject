@@ -28,4 +28,3 @@ def test_add_book_via_api_monkeypatched(tmp_path, monkeypatch):
     book = lib.add_book("999")
     assert book is not None
     assert lib.find_book("999") is not None
-

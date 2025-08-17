@@ -11,14 +11,15 @@ class Library:
         os.makedirs(os.path.dirname(self.data_file), exist_ok=True)
         self.load_books()
 
- 
+    # --- Aşama 1: Elle ekleme ---
     def add_book_manual(self, book: Book) -> Book:
         if self.find_book(book.isbn):
             raise ValueError("Bu ISBN zaten kayıtlı.")
         self.books.append(book)
         self.save_books()
         return book
-    
+
+    # --- Aşama 2: Open Library'den çekerek ekleme ---
     def _fetch_book_from_openlibrary(self, isbn: str) -> Optional[Book]:
         import httpx  # lazımsa import ediyoruz
         base = "https://openlibrary.org"
@@ -45,9 +46,6 @@ class Library:
             return None
         except httpx.HTTPStatusError:
             return None
-
-
-    
 
     def add_book(self, isbn: str) -> Optional[Book]:
         if self.find_book(isbn):
