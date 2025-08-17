@@ -13,13 +13,13 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-## Aşama 1 — Terminal Uygulaması
+Terminal Uygulaması
 ```bash
 python main.py
 ```
 Menü üzerinden kitap ekleme/silme/listeleme/arama yapabilirsiniz. Veriler `storage/library.json` içinde kalıcıdır.
 
-## Aşama 2 — ISBN ile Otomatik Ekleme
+ISBN ile Otomatik Ekleme
 Menüde **“Kitap Ekle (ISBN ile otomatik)”** seçeneğini kullanın. İnternet yoksa veya ISBN bulunamazsa program hata fırlatmaz, açıklayıcı mesaj verir.
 
 ## Aşama 3 — FastAPI
