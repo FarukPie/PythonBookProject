@@ -8,7 +8,6 @@ python -m venv .venv
 # Windows:
 .venv\Scripts\activate
 
-
 # 2) Bağımlılıklar
 pip install -r requirements.txt
 ```
