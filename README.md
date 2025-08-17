@@ -1,5 +1,5 @@
 
-# Kütüphane Uygulaması (Python 202 Bootcamp Projesi)
+# Kütüphane Uygulaması 
 
 ## Kurulum
 ```bash
