@@ -11,7 +11,7 @@ class Library:
         os.makedirs(os.path.dirname(self.data_file), exist_ok=True)
         self.load_books()
 
-    # --- Aşama 1: Elle ekleme ---
+
     def add_book_manual(self, book: Book) -> Book:
         if self.find_book(book.isbn):
             raise ValueError("Bu ISBN zaten kayıtlı.")
@@ -19,9 +19,9 @@ class Library:
         self.save_books()
         return book
 
-    # --- Aşama 2: Open Library'den çekerek ekleme ---
+
     def _fetch_book_from_openlibrary(self, isbn: str) -> Optional[Book]:
-        import httpx  # lazımsa import ediyoruz
+        import httpx  
         base = "https://openlibrary.org"
         url = f"{base}/isbn/{isbn}.json"
         try:
@@ -31,7 +31,7 @@ class Library:
             r.raise_for_status()
             data = r.json()
             title = data.get("title") or "Bilinmeyen Başlık"
-            # author isimlerini almak için tek tek detay endpoint'ine gidiyoruz
+
             names = []
             for a in data.get("authors", []):
                 key = a.get("key")
@@ -57,7 +57,7 @@ class Library:
         self.save_books()
         return book
 
-    # --- Ortak operasyonlar ---
+
     def remove_book(self, isbn: str) -> bool:
         before = len(self.books)
         self.books = [b for b in self.books if b.isbn != isbn]
